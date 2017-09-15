@@ -3,13 +3,14 @@ exports.restApp = function (origin, key, secret, tokenRefreshRate) {
     var $blackboard = this;	    
     $blackboard._key = key;
     $blackboard._secret = secret;
-    $blackboard._auth = 'Basic ' + new Buffer($blackboard._key + ':' + $blackboard._secret).toString('base64')},
+    $blackboard._auth = 'Basic ' + new Buffer($blackboard._key + ':' + $blackboard._secret).toString('base64'),
     $blackboard._origin = origin;	
     $blackboard._token = {accessToken: void 0, time: 0};
     $blackboard._hasToken = function () {
         var p = $blackboard._token;
         return p.accessToken && (Date.now() - p.time < $blackboard._tokenRefresh);
     };
+
     $blackboard._token = function (callback) {
         if (typeof callback !== 'function') callback = (body) => console.log(body);
         var options = {
@@ -28,6 +29,7 @@ exports.restApp = function (origin, key, secret, tokenRefreshRate) {
             }
         });
     };
+
     $blackboard._ajax = function (method, endpoint, body, callback) {
         if (typeof callback !== 'function') callback = (body) => console.log(body);
         $blackboard._token(function () {							            
@@ -53,4 +55,4 @@ exports.restApp = function (origin, key, secret, tokenRefreshRate) {
             $blackboard._ajax(method, endpoint, body, callback);            
         };
     });
-};
+}
