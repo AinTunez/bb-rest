@@ -5,12 +5,6 @@ exports.restApp = function (origin, key, secret, tokenRefreshRate) {
     $blackboard._secret = secret;
     $blackboard._auth = 'Basic ' + new Buffer($blackboard._key + ':' + $blackboard._secret).toString('base64'),
     $blackboard._origin = origin;	
-    $blackboard._token = {accessToken: void 0, time: 0};
-    $blackboard._hasToken = function () {
-        var p = $blackboard._token;
-        return p.accessToken && (Date.now() - p.time < $blackboard._tokenRefresh);
-    };
-
     $blackboard._token = function (callback) {
         if (typeof callback !== 'function') callback = (body) => console.log(body);
         var options = {
@@ -24,12 +18,12 @@ exports.restApp = function (origin, key, secret, tokenRefreshRate) {
             if (err) {
                 console.error(err);
             } else {
-                $blackboard._token = {accessToken: body.access_token, time: Date.now()}
+                $blackboard._token.accessToken = body.access_token;
                 callback();
             }
         });
     };
-
+    $blackboard._token.accessToken = '';
     $blackboard._ajax = function (method, endpoint, body, callback) {
         if (typeof callback !== 'function') callback = (body) => console.log(body);
         $blackboard._token(function () {							            
