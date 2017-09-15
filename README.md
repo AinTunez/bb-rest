@@ -38,6 +38,8 @@ The `options` argument takes only two properties:
 1. `data`: the object to be sent with the request.
 2. `complete`: the method to be performed upon the response. It follows the same syntax as the `callback` argument of the npm [request](https://www.npmjs.com/package/request) module. If undefined, it logs the body to the console.
 
+*If no data is to be sent (i.e. for `GET` requests), the `options` argument can simply be replaced with the `callback` function.*
+
 A `PATCH` request to update an existing course might look like this:
 
 ```javascript
