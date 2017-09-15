@@ -1,6 +1,6 @@
 # bb-rest
 
-This nodeJS module allows for easy interaction with Blackboard Learn REST APIs in application code.
+This module allows for easy interaction with Blackboard Learn REST APIs in application code.
 
 ## Installation
 Using npm:
@@ -26,7 +26,7 @@ All authentication is handled automatically by the object, refreshing the access
 
 ## Usage
 
-`restApp` objects have four methods corresponding to the HTTP verbs `get`, `post`, `patch`, and `delete`. All operate on the same syntax:
+`restApp` objects have five methods corresponding to the HTTP verbs `get`, `post`, `patch`, `put`, and `delete`. All operate on the same syntax:
 
 ```javascript
 myApp[method](path [string], options [object]);

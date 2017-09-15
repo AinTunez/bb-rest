@@ -52,7 +52,7 @@ exports.restApp = function (origin, key, secret, tokenRefresh) {
         });
     };
 
-    ['get','post','patch','delete'].forEach(function (method) {
+    ['get','post','patch','delete','put'].forEach(function (method) {
         $blackboard[method] = function (endpoint, options) {
             options = options || {};
             var form = options.form;
