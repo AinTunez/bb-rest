@@ -1,5 +1,7 @@
 # bb-rest
 
+This nodeJS module allows for easy interaction with Blackboard Learn REST APIs in application code.
+
 ## Installation
 Using npm:
 
