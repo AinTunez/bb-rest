@@ -24,7 +24,7 @@ All authentication is handled automatically by the object, refreshing the access
 
 ## Usage
 
-`restApp` objects have four methods corresponding to THE HTTP verbs `get`, `post`, `patch`, and `delete`. All operate on the same syntax:
+`restApp` objects have four methods corresponding to the HTTP verbs `get`, `post`, `patch`, and `delete`. All operate on the same syntax:
 
 ```javascript
 myApp[method](path [string], options [object]);
