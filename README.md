@@ -1,6 +1,6 @@
 # bb-rest
 
-This module allows for easy interaction with Blackboard Learn REST APIs in application code.
+This module allows for easy interaction with [Blackboard Learn REST APIs](https://developer.blackboard.com/portal/displayApi) in application code.
 
 ## Installation
 Using npm:
