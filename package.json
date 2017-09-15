@@ -1,7 +1,7 @@
 {
   "name": "bb-rest",
-  "version": "0.0.9",
-  "description": "",
+  "version": "0.0.14",
+  "description": "Interact with Blackboard Learn REST APIs.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,10 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/C-Weinstein/bb-rest.git"
   },
-  "author": "",
+  "author": "cweinstein.tech@gmail.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/C-Weinstein/bb-rest/issues"
   },
-  "homepage": "https://github.com/C-Weinstein/bb-rest#readme"
+  "homepage": "https://github.com/C-Weinstein/bb-rest#readme",
+  "dependencies": {
+    "request": "^2.81.0"
+  }
 }

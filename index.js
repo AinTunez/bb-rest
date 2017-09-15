@@ -1,5 +1,5 @@
 var request = require('request');
-exports.app = function (origin, key, secret, tokenRefresh) {
+exports.restApp = function (origin, key, secret, tokenRefresh) {
     var $blackboard = this;	    
     $blackboard._key = key;
     $blackboard._secret = secret;
