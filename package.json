@@ -1,6 +1,6 @@
 {
   "name": "bb-rest",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Interact with Blackboard Learn REST APIs.",
   "main": "index.js",
   "scripts": {
