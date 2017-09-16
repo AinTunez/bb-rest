@@ -18,5 +18,8 @@
   "homepage": "https://github.com/C-Weinstein/bb-rest#readme",
   "dependencies": {
     "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "request": "^2.81.0"
   }
 }
