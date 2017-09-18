@@ -71,16 +71,5 @@ exports.restApp = function (origin, key, secret) {
                 $blackboard._ajax(method, endpoint, data, callback);
             }
         };
-    });
-    
-    $blackboard.course = {
-        enable: function (endpoint, callback) {
-            $blackboard.patch(endpoint, {
-                data: {
-                    availability:
-                }
-            });
-        }
-    };
-    
+    });    
 }
