@@ -45,7 +45,7 @@ exports.restApp = function (origin, key, secret) {
                     console.error('Authentication failed.');
                 }
             } else {
-                callback(body);
+                callback(err, res, body);
             }
         });
     };
@@ -72,4 +72,15 @@ exports.restApp = function (origin, key, secret) {
             }
         };
     });
+    
+    $blackboard.course = {
+        enable: function (endpoint, callback) {
+            $blackboard.patch(endpoint, {
+                data: {
+                    availability:
+                }
+            });
+        }
+    };
+    
 }
