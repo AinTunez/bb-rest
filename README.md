@@ -2,7 +2,7 @@
 
 This module allows for easy interaction with [Blackboard Learn REST APIs](https://developer.blackboard.com/portal/displayApi) in application code.
 
-* UPDATE 9/19: Bugfixes *
+* UPDATE 9/19: Bugfixes
 
 ## Installation
 Using npm:
