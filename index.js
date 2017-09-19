@@ -36,8 +36,8 @@ exports.restApp = function (origin, key, secret) {
             body: data,
             json: true
         };            
-        request(options, function (err, res, body) {
-            var msg = body.message;
+        request(options, function (err, res, body) {            
+            var msg = (body || {}).message;
             if (msg === 'API request is not authenticated.' || msg === 'Bearer token is invalid') {
                 if (!hasFailed) {
                     $blackboard._token(() => $blackboard._ajaxInner(method, endpoint, data, callback, true));
