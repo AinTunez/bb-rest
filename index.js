@@ -50,15 +50,10 @@ exports.restApp = function (origin, key, secret) {
         });
     };
     $blackboard._ajax = function (method, endpoint, data, callback) {
-        if (typeof callback !== 'function') callback = (body) => console.log(body);
+        if (typeof callback !== 'function') callback = (err, res, body) => console.log('ERROR:\n', err, '\nRESPONSE:\n', res, '\nBODY:\n', body);
         var innerFn = () => $blackboard._ajaxInner(method, endpoint, data, callback);
-        if (!$blackboard._token.accessToken) {
-            $blackboard._token(innerFn);
-        } else {
-            innerFn();
-        }
+        $blackboard._token.accessToken ? $blackboard._token(innerFn) : innerFn();
     };
-
     ['get','post','patch','delete','put'].forEach(function (method) {
         $blackboard[method] = function (endpoint, options) {
             options = options || {};
