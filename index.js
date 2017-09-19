@@ -50,7 +50,7 @@ exports.restApp = function (origin, key, secret) {
         });
     };
     $blackboard._ajax = function (method, endpoint, data, callback) {
-        if (typeof callback !== 'function') callback = (err, res, body) => console.log('ERROR:\n', err, '\nRESPONSE:\n', res, '\nBODY:\n', body);
+        if (typeof callback !== 'function') callback = (err, res, body) => console.log(body || '{}');
         var innerFn = () => $blackboard._ajaxInner(method, endpoint, data, callback);
         $blackboard._token.accessToken ? $blackboard._token(innerFn) : innerFn();
     };
