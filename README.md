@@ -14,15 +14,15 @@ Using npm:
 Add the module:
 
 ```javascript
-const {restApp} = require('bb-rest');
+const {RestApp} = require('bb-rest');
 ```
-Construct a new `restApp` object:
+Construct a new `RestApp` object:
 
 ```javascript
 var origin = 'https://example.blackboard.com';
 var key = 'myAppKey';
 var secret = 'myAppSecret';
-var myApp = new restApp(origin, key, secret);
+var myApp = new RestApp(origin, key, secret);
 ```
 All authentication is handled automatically by the object, refreshing the access token as needed.
 
