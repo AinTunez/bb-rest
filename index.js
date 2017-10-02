@@ -1,5 +1,5 @@
 var request = require('request');
-exports.restApp = function (origin, key, secret) {
+exports.RestApp = function (origin, key, secret) {
     var $blackboard = this;	    
     $blackboard._key = key;
     $blackboard._secret = secret;
@@ -67,4 +67,5 @@ exports.restApp = function (origin, key, secret) {
             }
         };
     });    
-}
+};
+exports.restApp = exports.RestApp;
