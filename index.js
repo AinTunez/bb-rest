@@ -5,8 +5,7 @@ exports.RestApp = function (origin, key, secret) {
     $blackboard._secret = secret;
     $blackboard._auth = 'Basic ' + new Buffer($blackboard._key + ':' + $blackboard._secret).toString('base64');
     $blackboard._origin = origin;	
-    $blackboard._token = function (callback) {
-        console.log('Requesting new token...');
+    $blackboard._token = function (callback) {        
         var options = {
             method: 'post',
             url: $blackboard._origin + '/learn/api/public/v1/oauth2/token',                
@@ -17,8 +16,7 @@ exports.RestApp = function (origin, key, secret) {
         var req = request(options, function (err, res, body) {                
             if (err) {
                 console.error(err);
-            } else {
-                console.log('Authentication successful.');
+            } else {                
                 $blackboard._token.accessToken = body.access_token;
                 if (callback) callback();
             }
