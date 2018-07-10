@@ -1,3 +1,4 @@
+var fs = require('fs');
 var request = require('request');
 exports.RestApp = function (origin, key, secret) {
     var $blackboard = this;	    
@@ -23,7 +24,7 @@ exports.RestApp = function (origin, key, secret) {
         });
     };
     $blackboard._token.accessToken = '';
-    $blackboard._ajaxInner = function (method, endpoint, data, callback, hasFailed) {							            
+    $blackboard._ajaxInner = function (method, endpoint, data, file, callback, hasFailed) {
         var options = {
             method: method,
             url:  encodeURI($blackboard._origin + '/learn/api/public/v1/' + endpoint.replace(/^\//, '')),                
@@ -32,13 +33,22 @@ exports.RestApp = function (origin, key, secret) {
                 'content-type':'application/json'
             },
             body: data,
+            formData: !!file ? {
+                toUpload: {
+                    value: fs.createReadStream(file.path),
+                    options: {
+                        filename: file.originalFilename,
+                        contentType: file.headers['content-type']
+                    }
+                }
+            } : null,
             json: true
         };            
         request(options, function (err, res, body) {            
             var msg = (body || {}).message;
             if (msg === 'API request is not authenticated.' || msg === 'Bearer token is invalid') {
                 if (!hasFailed) {
-                    $blackboard._token(() => $blackboard._ajaxInner(method, endpoint, data, callback, true));
+                    $blackboard._token(() => $blackboard._ajaxInner(method, endpoint, data, file, callback, true));
                 } else {
                     console.error('Authentication failed.');
                 }
@@ -47,9 +57,9 @@ exports.RestApp = function (origin, key, secret) {
             }
         });
     };
-    $blackboard._ajax = function (method, endpoint, data, callback) {
+    $blackboard._ajax = function (method, endpoint, data, file, callback) {
         if (typeof callback !== 'function') callback = (err, res, body) => console.log(err || body);
-        var innerFn = () => $blackboard._ajaxInner(method, endpoint, data, callback);
+        var innerFn = () => $blackboard._ajaxInner(method, endpoint, data, file, callback);
         $blackboard._token.accessToken ? $blackboard._token(innerFn) : innerFn();
     };
     ['get','post','patch','delete','put'].forEach(function (method) {
@@ -57,11 +67,12 @@ exports.RestApp = function (origin, key, secret) {
             options = options || {};
             if (typeof options === 'function') {
                 var callback = options;
-                $blackboard._ajax(method, endpoint, void 0, callback);
+                $blackboard._ajax(method, endpoint, void 0, null, callback);
             } else {
                 var data = options.body || options.data;
+                var file = options.file;
                 var callback = options.callback || options.complete;
-                $blackboard._ajax(method, endpoint, data, callback);
+                $blackboard._ajax(method, endpoint, data, file, callback);
             }
         };
     });    
